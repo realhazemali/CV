@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazem Ali | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --success: #4cc9f0;
+            --bg-body: #f8f9fa;
+            --text-dark: #2b2d42;
+            --text-light: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(67, 97, 238, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-body); color: var(--text-dark); font-family: 'Poppins', sans-serif; line-height: 1.7; overflow-x: hidden; }
+        body.rtl { font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; }
+
+        .lang-btn {
+            position: fixed; top: 20px; right: 20px; background: var(--white); color: var(--primary);
+            padding: 8px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: none; cursor: pointer; z-index: 1000; font-weight: bold; transition: 0.3s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        body.rtl .lang-btn { right: auto; left: 20px; }
+        .lang-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
+        header {
+            background: linear-gradient(135deg, #4361ee 0%, #7209b7 100%);
+            color: var(--white); padding: 6rem 1rem 4rem; text-align: center;
+            border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;
+            margin-bottom: 3rem; position: relative; box-shadow: 0 10px 30px rgba(114, 9, 183, 0.2);
+        }
+
+        .profile-img {
+            width: 170px; height: 170px; border-radius: 50%; border: 5px solid rgba(255,255,255,0.4);
+            object-fit: cover; margin-bottom: 1.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: transform 0.4s ease; background: #fff;
+        }
+        .profile-img:hover { transform: scale(1.05) rotate(-2deg); }
+
+        h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -1px; }
+        .subtitle { font-size: 1.1rem; opacity: 0.9; font-weight: 300; letter-spacing: 1px; }
+
+        .social-links { display: flex; justify-content: center; gap: 15px; margin-top: 2rem; flex-wrap: wrap; }
+        .social-btn {
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: var(--white);
+            text-decoration: none; padding: 12px 25px; border-radius: 30px; font-weight: 600;
+            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; gap: 10px;
+        }
+        .social-btn:hover { background: var(--white); color: var(--primary); transform: translateY(-5px); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        section { margin-bottom: 5rem; }
+
+        .section-title { text-align: center; margin-bottom: 3rem; position: relative; }
+        .section-title h2 { font-size: 2.2rem; color: var(--text-dark); position: relative; display: inline-block; z-index: 1; }
+        .section-title h2::after {
+            content: ''; position: absolute; bottom: 5px; left: 0; width: 100%; height: 10px;
+            background-color: rgba(67, 97, 238, 0.2); z-index: -1; border-radius: 10px;
+        }
+
+        .card {
+            background: var(--white); border-radius: 20px; padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #f0f0f0; position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-7px); box-shadow: 0 20px 50px rgba(67, 97, 238, 0.15); }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+
+        .timeline-item { position: relative; padding-left: 30px; margin-bottom: 40px; border-left: 3px solid #e9ecef; }
+        body.rtl .timeline-item { padding-left: 0; padding-right: 30px; border-left: none; border-right: 3px solid #e9ecef; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -9px; top: 5px; width: 15px; height: 15px;
+            background: var(--white); border: 3px solid var(--primary); border-radius: 50%;
+        }
+        body.rtl .timeline-item::before { left: auto; right: -9px; }
+
+        .timeline-date {
+            font-size: 0.9rem; color: var(--primary); font-weight: 700; background: rgba(67, 97, 238, 0.1);
+            padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 10px;
+        }
+        .job-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; color: var(--text-dark); }
+        .company-name { font-size: 1rem; color: #888; margin-bottom: 15px; display: block; }
+
+        .skill-tag {
+            display: flex; align-items: center; gap: 10px; background: #f8f9fa; padding: 15px 20px;
+            border-radius: 15px; font-weight: 600; color: var(--text-dark); transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .skill-tag:hover {
+            background: var(--white); border-color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.05); color: var(--primary);
+        }
+        .skill-tag i { font-size: 1.2rem; color: var(--secondary); }
+        .skill-tag.long-text { font-size: 0.95rem; }
+
+        .edu-card h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--text-dark); }
+        .edu-card p { color: var(--text-light); font-size: 0.95rem; }
+        .grade { display: block; margin-top: 15px; font-weight: bold; color: var(--primary); font-size: 0.9rem; }
+
+        footer { background-color: var(--white); text-align: center; padding: 3rem; margin-top: 5rem; border-top: 1px solid #eee; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            header { padding-top: 5rem; border-radius: 0 0 30px 30px; }
+            .section-title h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="lang-btn" onclick="toggleLanguage()">
+        <i class="fas fa-globe"></i> <span id="lang-text">AR</span>
+    </button>
+
+    <div id="en-content">
+        <header>
+            <div class="container">
+                <img src="https://media.licdn.com/dms/image/v2/D4D03AQGoNtEz-ll0pg/profile-displayphoto-scale_400_400/B4DZuE9EB_IYAg-/0/1767462161983?e=1770854400&v=beta&t=FEjD4jxkF5yep8xm3iSSZAqFlJVcw6iUegOLo7WcCM4" alt="Hazem Ali" class="profile-img">
+                <h1>Hazem Ali</h1>
+                <p class="subtitle">Health Informatics Specialist & Patient Data Analyst</p>
+                <div class="social-links">
+                    <a href="https://wa.me/201122032061" class="social-btn"><i class="fab fa-whatsapp"></i> 01122032061</a>
+                    <a href="tel:+201024914291" class="social-btn"><i class="fas fa-phone-alt"></i> 01024914291</a>
+                    <a href="mailto:hazemali01122032061@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://www.linkedin.com/in/hazem-ali-337aa4249/" class="social-btn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <section>
+                <div class="section-title"><h2>Professional Summary</h2></div>
+                <div class="card" style="text-align: center;">
+                    <p style="font-size: 1.1rem; color: #555;">
+                        Health Informatics Specialist at El-Fayrouz Medical Complex. My experience bridges <strong>Human Resources</strong> and <strong>Patient Data Management (CMO)</strong>.
+                        I have a working knowledge of <strong>SQL databases</strong> and specialize in designing AI-driven data systems using tools like <strong>Gemini</strong>.
+                        I am currently seeking opportunities for the second half of the month to leverage my skills in data analytics and digital transformation.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title"><h2>Skills</h2></div>
+                <div class="grid-3">
+                    <div class="skill-tag long-text" style="grid-column: span 2;"><i class="fas fa-layer-group"></i> Designing Data Management & Analysis Interfaces using AI</div>
+                    <div class="skill-tag"><i class="fas fa-database"></i> SQL Databases</div>
+                    <div class="skill-tag"><i class="fas fa-robot"></i> Gemini & AI Tools</div>
+                    <div class="skill-tag"><i class="fas fa-chart-pie"></i> Data Analysis</div>
+                    <div class="skill-tag"><i class="fas fa-desktop"></i> Electronic Records (EHR)</div>
+                    <div class="skill-tag"><i class="fas fa-user-injured"></i> Patient Admission</div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title"><h2>Experience</h2></div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Sep 2024 - Present</span>
+                    <h3 class="job-title">Health Informatics Specialist</h3>
+                    <span class="company-name">El-Fayrouz Medical Complex</span>
+                    <div class="card">
+                        <ul style="padding-left: 20px; color: #555;">
+                            <li>Training staff on the electronic registration system.</li>
+                            <li>Resolving technical issues during patient registration.</li>
+                            <li>Analyzing data to improve hospital workflow.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Jun 2023 - Sep 2024</span>
+                    <h3 class="job-title">CMO (Patient Reception & Data Officer)</h3>
+                    <span class="company-name">El-Mezina Family Medicine Center</span>
+                    <div class="card">
+                        <ul style="padding-left: 20px; color: #555;">
+                            <li>Managed patient reception desk and organized visit flow.</li>
+                            <li>Accurately entered patient demographics and visit data into the system.</li>
+                            <li>Scheduled appointments and managed the daily patient roster.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Nov 2022 - Apr 2023</span>
+                    <h3 class="job-title">HR Officer</h3>
+                    <span class="company-name">Wadi Mandar Family Medicine Unit</span>
+                    <div class="card">
+                        <ul style="padding-left: 20px; color: #555;">
+                            <li>Managed employee records and administrative data.</li>
+                            <li>Prepared payroll sheets and attendance logs.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Oct 2021 - Apr 2022</span>
+                    <h3 class="job-title">Data Entry Employee (Training)</h3>
+                    <span class="company-name">Abu Qurqas Health Administration</span>
+                    <div class="card">
+                        <ul style="padding-left: 20px; color: #555;">
+                            <li>Trained in data entry and data analysis with a focus on accuracy and efficiency.</li>
+                            <li>Gained hands-on experience working with various electronic registration platforms.</li>
+                            <li>Developed skills in handling and interpreting healthcare and administrative data.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title"><h2>Education</h2></div>
+                <div class="grid-2">
+                    <div class="card edu-card">
+                        <h3><i class="fas fa-user-graduate" style="color:var(--primary)"></i> Bachelor's in Health Sciences</h3>
+                        <p>Health Technical Institute - Beni Suef</p>
+                        <span class="grade">In Progress</span>
+                    </div>
+                    <div class="card edu-card">
+                        <h3><i class="fas fa-certificate" style="color:var(--primary)"></i> Technical Health Diploma</h3>
+                        <p>Health Technical Institute - Beni Suef (2021)</p>
+                        <span class="grade">Grade: Excellent</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title"><h2>Courses</h2></div>
+                <div class="grid-3">
+                    <div class="card edu-card">
+                        <h3>Data Science of Health Informatics</h3>
+                        <p>Johns Hopkins University</p>
+                        <span class="grade">94.47%</span>
+                    </div>
+                    <div class="card edu-card">
+                        <h3>Health Informatics</h3>
+                        <p>Northeastern University</p>
+                        <span class="grade">91.18%</span>
+                    </div>
+                    <div class="card edu-card" style="border: 2px solid var(--success);">
+                        <h3>IT Security: Defense against the digital dark arts</h3>
+                        <p>Google</p>
+                        <span class="grade">91.16%</span>
+                    </div>
+                    <div class="card edu-card">
+                        <h3>Technical Support Fundamentals</h3>
+                        <p>Google</p>
+                        <span class="grade">97.89%</span>
+                    </div>
+                    <div class="card edu-card">
+                        <h3>System Admin & Infrastructure</h3>
+                        <p>Google</p>
+                        <span class="grade">93.62%</span>
+                    </div>
+                    <div class="card edu-card">
+                        <h3>Social & Technical Context</h3>
+                        <p>Johns Hopkins University</p>
+                        <span class="grade">90.27%</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="ar-content" style="display: none;">
+        <header>
+            <div class="container">
+                <img src="profile.jpg" alt="Hazem Ali" class="profile-img">
+                <h1>حازم علي</h1>
+                <p class="subtitle">أخصائي معلوماتية صحية ومحلل بيانات</p>
+                <div class="social-links">
+                    <a href="https://wa.me/201122032061" class="social-btn"><i class="fab fa-whatsapp"></i> راسلني</a>
+                    <a href="tel:+201024914291" class="social-btn"><i class="fas fa-phone-alt"></i> اتصل بي</a>
+                    <a href="mailto:hazemali01122032061@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> البريد الإلكتروني</a>
+                    <a href="https://www.linkedin.com/in/hazem-ali-337aa4249/" class="social-btn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <section>
+                <div class="section-title"><h2>النبذة المهنية</h2></div>
+                <div class="card" style="text-align: center;">
+                    <p style="font-size: 1.1rem; color: #555;">
+                        أخصائي معلوماتية صحية بمجمع الفيروز الطبي، أمتلك خبرة عملية تجمع بين الموارد البشرية وإدارة استقبال وبيانات المرضى (CMO).
+                        لدي مهارات جيدة في التعامل مع **قواعد البيانات SQL** وتصميم أنظمة إدخال وتحليل البيانات باستخدام تقنيات الذكاء الاصطناعي (Gemini).
+                        أتطلع حالياً لتوظيف خبراتي في **التحول الرقمي** خلال النصف الثاني من الشهر لتقديم قيمة مضافة وزيادة الكفاءة التشغيلية.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title"><h2>المهارات</h2></div>
+                <div class="grid-3">
+                    <div class="skill-tag long-text" style="grid-column: span 2;"><i class="fas fa-layer-group"></i> تصميم واجهات إدارة وتحليل البيانات بواسطة الذكاء الاصطناعي</div>
+                    <div class="skill-tag"><i class="fas fa-database"></i> التعامل مع قواعد البيانات SQL</div>
+                    <div class="skill-tag"><i class="fas fa-robot"></i> أدوات الذكاء الاصطناعي (Gemini)</div>
+                    <div class="skill-tag"><i class="fas fa-chart-pie"></i> تحليل البيانات</div>
+                    <div class="skill-tag"><i class="fas fa-desktop"></i> السجلات الإلكترونية (EHR)</div>
+                    <div class="skill-tag"><i class="fas fa-user-injured"></i> استقبال وتسجيل المرضى</div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title"><h2>الخبرات العملية</h2></div>
+                <div class="timeline-item">
+                    <span class="timeline-date">سبتمبر 2024 - الآن</span>
+                    <h3 class="job-title">أخصائي معلوماتية صحية</h3>
+                    <span class="company-name">مجمع الفيروز الطبي</span>
+                    <div class="card">
+                        <ul style="padding-right: 20px; color: #555;">
+                            <li>تدريب الموظفين على نظام التسجيل الإلكتروني.</li>
+                            <li>حل المشاكل التقنية التي تواجه عملية التسجيل.</li>
+                            <li>تحليل البيانات لتحسين سير العمل بالمستشفى.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">يونيو 2023 - سبتمبر 2024</span>
+                    <h3 class="job-title">CMO (مسؤول استقبال وإدارة بيانات المرضى)</h3>
+                    <span class="company-name">مركز طب أسرة المزينة</span>
+                    <div class="card">
+                        <ul style="padding-right: 20px; color: #555;">
+                            <li>إدارة مكتب استقبال المرضى وتنظيم تدفق الزيارات.</li>
+                            <li>إدخال البيانات الديموغرافية والطبية للمرضى بدقة على النظام.</li>
+                            <li>إدارة جدول المواعيد اليومية للمرضى.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">نوفمبر 2022 - أبريل 2023</span>
+                    <h3 class="job-title">مسؤول موارد بشرية (HR)</h3>
+                    <span class="company-name">وحدة وادي مندر</span>
+                    <div class="card">
+                        <ul style="padding-right: 20px; color: #555;">
+                            <li>إدارة ملفات الموظفين والسجلات الإدارية.</li>
+                            <li>تجهيز كشوف الرواتب وسجلات الحضور والانصراف.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">أكتوبر 2021 - أبريل 2022</span>
+                    <h3 class="job-title">موظف إدخال بيانات (فترة تدريب)</h3>
+                    <span class="company-name">الإدارة الصحية بأبو قرقاص</span>
+                    <div class="card">
+                        <ul style="padding-right: 20px; color: #555;">
+                            <li>التدريب على إدخال وتحليل البيانات مع التركيز على الدقة والكفاءة.</li>
+                            <li>اكتساب خبرة عملية في التعامل مع منصات التسجيل الإلكتروني المختلفة.</li>
+                            <li>تطوير مهارات التعامل مع وتفسير البيانات الصحية والإدارية.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title"><h2>التعليم</h2></div>
+                <div class="grid-2">
+                    <div class="card edu-card">
+                        <h3><i class="fas fa-user-graduate" style="color:var(--primary)"></i> بكالوريوس علوم صحية</h3>
+                        <p>المعهد الفني الصحي - بني سويف</p>
+                        <span class="grade">قيد الدراسة</span>
+                    </div>
+                    <div class="card edu-card">
+                        <h3><i class="fas fa-certificate" style="color:var(--primary)"></i> دبلوم فني صحي</h3>
+                        <p>المعهد الفني الصحي - بني سويف (2021)</p>
+                        <span class="grade">التقدير: ممتاز</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title"><h2>الدورات التدريبية</h2></div>
+                <div class="grid-3">
+                    <div class="card edu-card">
+                        <h3>علم بيانات المعلوماتية الصحية</h3>
+                        <p>جامعة جونز هوبكنز</p>
+                        <span class="grade">94.47%</span>
+                    </div>
+                    <div class="card edu-card">
+                        <h3>المعلوماتية الصحية</h3>
+                        <p>جامعة نورث إيسترن</p>
+                        <span class="grade">91.18%</span>
+                    </div>
+                    <div class="card edu-card" style="border: 2px solid var(--success);">
+                        <h3>أمن المعلومات (IT Security)</h3>
+                        <p>Google</p>
+                        <span class="grade">91.16%</span>
+                    </div>
+                    <div class="card edu-card">
+                        <h3>أساسيات الدعم الفني</h3>
+                        <p>Google</p>
+                        <span class="grade">97.89%</span>
+                    </div>
+                    <div class="card edu-card">
+                        <h3>إدارة الأنظمة والبنية التحتية</h3>
+                        <p>Google</p>
+                        <span class="grade">93.62%</span>
+                    </div>
+                    <div class="card edu-card">
+                        <h3>السياق الاجتماعي والتقني للمعلوماتية</h3>
+                        <p>جامعة جونز هوبكنز</p>
+                        <span class="grade">90.27%</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <p>تم التصميم والتطوير بواسطة حازم علي باستخدام جيميناي © 2026</p>
+    </footer>
+
+    <script>
+        function toggleLanguage() {
+            const en = document.getElementById('en-content');
+            const ar = document.getElementById('ar-content');
+            const btn = document.getElementById('lang-text');
+            const body = document.body;
+            
+            if (en.style.display === 'none') {
+                en.style.display = 'block'; ar.style.display = 'none';
+                btn.textContent = 'AR'; body.classList.remove('rtl');
+            } else {
+                en.style.display = 'none'; ar.style.display = 'block';
+                btn.textContent = 'EN'; body.classList.add('rtl');
+            }
+        }
+    </script>
+</body>
+</html>
