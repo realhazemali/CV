@@ -32,6 +32,10 @@ I am a Health Informatics Specialist and a Full-stack Developer, bridging the ga
 ## 🎓 Education
 * **Bachelor of Health Sciences** - Major in Medical Registration.
 
+## 📜 Licenses & Certifications
+* **Healthcare Information System** — AhlMasr Foundation, issued August 2026. One-week Healthcare Information Systems (HIS) internship.
+* **Building with the Claude API** — Anthropic Education.
+
 ## 🏆 Achievements & Continuous Learning
 * Selected participant in the **Build with AI: Masr Edition** program (Medium & Advanced tracks).
 * Architecting a comprehensive knowledge base for healthcare interoperability standards.
@@ -60,6 +64,10 @@ I am a Health Informatics Specialist and a Full-stack Developer, bridging the ga
 
 ## 🎓 التعليم
 * **بكالوريوس العلوم الصحية** - تخصص تسجيل طبي.
+
+## 📜 الشهادات والاعتمادات
+* **Healthcare Information System** — مؤسسة أهل مصر (AhlMasr Foundation)، صدرت في أغسطس ٢٠٢٦. تدريب لمدة أسبوع في نظم المعلومات الصحية (HIS).
+* **Building with the Claude API** — Anthropic Education.
 
 ## 🏆 إنجازات وتطوير مستمر
 * مشارك في برنامج **Build with AI: Masr Edition** (المسار المتوسط والمتقدم).
